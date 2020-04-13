@@ -1,0 +1,13 @@
+.button{
+
+    display:flex;
+    height: 4em;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    font-weight: lighter;
+    font-size : 1.4em;
+    color: black;
+    outline:1px solid gray;
+
+}
