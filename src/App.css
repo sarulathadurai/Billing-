@@ -1,21 +1,27 @@
-.App{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+.result {
+  height: 60px;
+  background-color: #bbb;
   width: 100%;
 }
 
-.calc-wrapper {
-  width: 400px;
-  height: auto;
+.result p {
+  font-size: 40px;
+  margin: 5px;
+
 }
 
-.row{
-  display:flex;
-  width:100%;
+.calculator-body {
+  max-width: 400px;
+  margin: auto;
 }
 
-.operator{
-  background-color: white;
+.button {
+  display: block;
+  background-color: #bbb;
+}
+
+button {
+  width: 25%;
+  height: 60px;
+  font-size: 30px;
 }

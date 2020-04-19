@@ -1,164 +1,87 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './App.css';
-import Button from './components/Button';
-import Input from './components/Input'
-import ClearButton from './components/ClearButton';
+import ResultComponent from './components/ResultComponent';
+import KeyPadComponent from "./components/KeyPadComponent";
 
-
-export default class App extends React.Component{
-    constructor(props){
-        super(props);
+class App extends Component {
+    constructor(){
+        super();
 
         this.state = {
-            input: "",
-            previousNumber: "",
-            currentNumber: "",
-            operator: ""
-        };
-    }
-
-    addZerotoinput = val => {
-
-        //if this.state.input is not empty than add zero
-
-        if (this.state.input !== ""){
-
-            this.setState({input : this.state.input + val})
-
+            result: ""
         }
     }
 
+    onClick = button => {
 
-    addDecimal= val => {
-        //only add decimal if there is no current decimal point present in the input area
-        //indexOf is used to parse the string and identify the element that equals to -1 means not present
-
-        if (this.state.input.indexOf(".") === -1){
-
-            this.setState({input: this.state.input + val});
-        }
-    }
-
-    clearInput = () => {
-        this.setState({input: ""})
-    }
-
-    add = () => {
-        this.state.previousNumber = this.state.input;
-        this.setState({input: ""});
-        this.state.operator = 'plus';
-    }
-
-    subtract = () => {
-        this.state.previousNumber = this.state.input;
-        this.setState({input: ""});
-        this.state.operator = 'minus';
-
-    }
-
-    multiply = () => {
-        this.state.previousNumber = this.state.input;
-        this.setState({input: ""});
-        this.state.operator = 'multiply';
-        
-    }
-    
-    divide = () =>{
-        this.state.previousNumber = this.state.input;
-        this.setState({input: ""});
-        this.state.operator = 'divide';
-
-    }
-
-    evaluate = () => {
-        this.state.currentNumber = this.state.input;
-
-        if(this.state.operator == "plus") {
-
-            this.setState({
-
-                input: parseInt(this.state.previousNumber) +
-                parseInt(this.state.currentNumber) 
-
-            });
+        if(button === "="){
+            this.calculate()
         }
 
-        else if(this.state.operator == "minus") {
-
-            this.setState({
-
-                input: parseInt(this.state.previousNumber) -
-                parseInt(this.state.currentNumber) 
-
-            });
+        else if(button === "C"){
+            this.reset()
         }
-
-        else if(this.state.operator == "multiply") {
-
-            this.setState({
-
-                input: parseInt(this.state.previousNumber) *
-                parseInt(this.state.currentNumber) 
-
-            });
+        else if(button === "CE"){
+            this.backspace()
         }
 
         else {
-
             this.setState({
-
-                input: parseInt(this.state.previousNumber) /
-                parseInt(this.state.currentNumber) 
-
-            });
+                result: this.state.result + button
+            })
         }
-    }
-     
-    render(){
-        return(
+    };
 
-            <div className = "App">
-            <div className = "calc-wrapper">
-                <div className = "row">
-                  <Input>{this.state.input}</Input>
-                </div>
-                <div className = "row">
-                    <Button handleClick = {this.addToInput}>7</Button>
-                    <Button handleClick = {this.addToInput}>8</Button>
-                    <Button handleClick = {this.addToInput}>9</Button>
-                    <Button handleClick = {this.divide}>/</Button>
-                </div>
 
-                <div className = "row">
-                    <Button handleClick = {this.addToInput}>4</Button>
-                    <Button handleClick = {this.addToInput}>5</Button>
-                    <Button handleClick = {this.addToInput}>6</Button>
-                    <Button handleClick = {this.multiply}>*</Button>
-                </div>
+    calculate = () => {
+        var checkResult = ''
+        if(this.state.result.includes('--')){
+            checkResult = this.state.result.replace('--','+');
+        }
 
-                <div className = "row">
-                    <Button handleClick = {this.addToInput}>1</Button>
-                    <Button handleClick = {this.addToInput}>2</Button>
-                    <Button handleClick = {this.addToInput}>3</Button>
-                    <Button handleClick = {this.add} > + </Button>
-                </div>
+        else {
+            checkResult = this.state.result;
+        }
+           
+        try {
+            this.setState({
+                // eslint-disable-next-line
+                result: (eval(checkResult) || "" ) + ""
+            })
 
-                <div className = "row">
-                    <Button handleClick = {this.addDecimal}> . </Button>
-                    <Button handleClick = {this.addZerotoinput}> 0 </Button>
-                    <Button handleClick = {this.evaluate}> = </Button>
-                    <Button handleClick = {this.subtract}> - </Button>
-                </div>
-                <div>
-                    <ClearButton handleClear = {this.clearInput}>
-                        clear
-                    </ClearButton>
-                </div>
+        } 
+        catch (e) {
+            this.setState({
+                result: "error"
+            });
 
+        }
+    };
+
+    reset = () => {
+        this.setState({
+            result: ""
+        })
+    };
+
+    backspace = () => {
+        this.setState({
+            result: this.state.result.slice(0, -1)
+        })
+    };
+
+    render() {
+        return (
+            <div>
+                <div className="calculator-body">
+                    <h1>Simple Calculator</h1>
+                    <ResultComponent result={this.state.result}/>
+                    <KeyPadComponent onClick={this.onClick}/>
+                    <Input />
+                </div>
             </div>
-        </div>
-
         );
-      
     }
 }
+
+export default App;
