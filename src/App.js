@@ -2,13 +2,21 @@ import React, { Component } from 'react';
 import './App.css';
 import ResultComponent from './components/ResultComponent';
 import KeyPadComponent from "./components/KeyPadComponent";
+import Input from "./components/Input";
+import Modal from "./components/Modal";
+import ListItem from './components/ListItem';
+import Image from './components/Image';
+
 
 class App extends Component {
     constructor(){
         super();
 
         this.state = {
-            result: ""
+            total:"",
+            result: "",
+            item : "",
+            showModal : false
         }
     }
 
@@ -56,6 +64,13 @@ class App extends Component {
             });
 
         }
+
+        this.setState ({
+
+            total:this.state.result
+        })
+
+        
     };
 
     reset = () => {
@@ -70,15 +85,62 @@ class App extends Component {
         })
     };
 
+    //rendering portal
+
+    handleShow = () => {
+
+        this.setState({showModal : true});
+
+    }
+    
+    handleHide = () => {
+
+        this.setState({showModal : false});
+    }
+    
+    handleChange = (e) => {
+
+        this.setState ({
+
+            item:e.target.value
+
+        })
+
+    }
+
+
     render() {
+
+        const modal = this.state.showModal ? (
+            <Modal>
+                 <div className="calculator-body">
+
+                 <ResultComponent result={this.state.result}/>
+                 <KeyPadComponent onClick={this.onClick}/>
+
+                 <button className = "btn-style"onClick = {this.handleHide}>close</button>
+
+                 </div>
+               
+            </Modal>
+        ) :null;        
+           
+        const displayItemFromCalc =  this.state.total? (
+
+            <ListItem item={this.state.item} amount={this.state.result} />
+
+        ) :null;
+     
         return (
-            <div>
-                <div className="calculator-body">
-                    <h1>Simple Calculator</h1>
-                    <ResultComponent result={this.state.result}/>
-                    <KeyPadComponent onClick={this.onClick}/>
+            <div onChange = {this.handleChange}>
+                    
+                    <p>Hey guys this is a simple billing system where you can enter the items and amount and the total gets printed.You can even use calculator if you want assistance</p>
                     <Input />
-                </div>
+                    {displayItemFromCalc}
+                    <img className="img-align" onClick = {this.handleShow} src="https://img.icons8.com/dusk/64/000000/calculator.png"/>
+                    {modal}
+
+
             </div>
         );
     }
