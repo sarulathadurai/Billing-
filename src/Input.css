@@ -1,0 +1,84 @@
+input{
+   
+    width:60%;
+    border:1px solid rgb(16, 93, 236);
+    height : 30px;
+    margin :10px 20%;
+    padding :5px;
+    border-radius:7px;
+}
+
+.form{
+
+    padding: 10px;
+}
+
+.display {
+    display:flex;
+    flex-direction :column;
+    margin:auto;
+    position:relative;
+}
+
+::placeholder {
+
+    font-size:20px;
+    text-align:justify;
+    padding: 5px;
+    font-family:"Roboto"
+}
+
+.btn-style{
+    
+    width: 100px;
+    align-self: center;
+    margin : 20px 45%;
+    padding:10px;
+    position: relative ;
+    background-color: rgb(27, 10, 100);
+    border: rgb(27, 10, 100);
+    color: white;
+
+}
+
+.item{
+    
+    border:1px solid rgb(16, 93, 236);
+    width:60%;
+    margin:10px 20%;
+    padding:5px;
+    height:auto;
+
+}
+
+div>table{
+    width:100%;
+    text-align: center;
+}
+
+tr,td {
+    
+    width:50%;
+    border:1px,solid,black;
+}
+
+tfoot{
+
+    font-size:30px;
+    font-weight: bolder;
+    color: #333;
+}
+
+tbody{
+
+    font-size: 20px;
+}
+
+
+@media only screen and (max-width : 500px){
+    
+    .btn-style{
+
+        margin: 20px 35%;
+    }
+}
