@@ -17,9 +17,8 @@ const List = (props) =>{
 
 
              )
-           )}
-
-
+             
+             )}
 
         </div>
          

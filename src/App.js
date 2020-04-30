@@ -4,22 +4,25 @@ import ResultComponent from './components/ResultComponent';
 import KeyPadComponent from "./components/KeyPadComponent";
 import Input from "./components/Input";
 import Modal from "./components/Modal";
-import ListItem from './components/ListItem';
-import Image from './components/Image';
-
+import List from './components/List'
+import AmountCalculation from './components/AmountCalculation';
 
 class App extends Component {
     constructor(){
-        super();
+        super();      
 
         this.state = {
+            items: "",
             total:"",
             result: "",
-            item : "",
             showModal : false
         }
-    }
 
+        this.state = {
+            list:[]
+        }
+    }
+  
     onClick = button => {
 
         if(button === "="){
@@ -65,9 +68,12 @@ class App extends Component {
 
         }
 
-        this.setState ({
+        let result = (eval(checkResult) || "" ) + ""
 
-            total:this.state.result
+        this.setState ({
+            
+            total:result
+        
         })
 
         
@@ -98,14 +104,56 @@ class App extends Component {
         this.setState({showModal : false});
     }
     
-    handleChange = (e) => {
-
+    handleChange = (item) => {
+    
         this.setState ({
 
-            item:e.target.value
+            item:item
 
         })
 
+        if(this.state.total !== 0){
+
+
+        let listItem = { item,amount:this.state.result}
+        console.log(listItem);
+
+        this.addItemfromCalci(listItem);
+
+        }
+
+    }
+    
+    addItemfromCalci = (listItem) => {
+
+        listItem.id = Math.random();
+        let listCopy = [...this.state.list,listItem]
+        this.setState({
+            list:listCopy
+        })
+          console.log(this.state.list)
+    }
+
+    addNinja = (ninja) => {
+       
+        if(ninja.item && ninja.amount){
+            ninja.id= Math.random();
+            let listCopy = [...this.state.list,ninja]
+            this.setState({
+                list:listCopy
+            })
+        }
+
+    }
+
+    deleteItem = (id) => {
+        
+        let list = this.state.list.filter(item => {
+            return item.id !==id
+        })
+        this.setState({
+            list : list
+        })
     }
 
 
@@ -115,29 +163,24 @@ class App extends Component {
             <Modal>
                  <div className="calculator-body">
 
-                 <ResultComponent result={this.state.result}/>
+                 <ResultComponent handleChange = {this.handleChange} item={this.state.item} result={this.state.result}/>
                  <KeyPadComponent onClick={this.onClick}/>
 
-                 <button className = "btn-style"onClick = {this.handleHide}>close</button>
-
+                 <button className = "btn-style"onClick = {this.handleHide}>close</button>                
                  </div>
                
             </Modal>
         ) :null;        
-           
-        const displayItemFromCalc =  this.state.total? (
-
-            <ListItem item={this.state.item} amount={this.state.result} />
-
-        ) :null;
      
         return (
-            <div onChange = {this.handleChange}>
+            <div>
                     
                     <p>Hey guys this is a simple billing system where you can enter the items and amount and the total gets printed.You can even use calculator if you want assistance</p>
-                    <Input />
-                    {displayItemFromCalc}
+
+                    <Input addNinja = {this.addNinja}/>
                     <img className="img-align" onClick = {this.handleShow} src="https://img.icons8.com/dusk/64/000000/calculator.png"/>
+                    <List list = {this.state.list} deleteItem= {this.deleteItem} />
+                    <AmountCalculation list = {this.state.list}/>
                     {modal}
 
 
@@ -147,3 +190,4 @@ class App extends Component {
 }
 
 export default App;
+
