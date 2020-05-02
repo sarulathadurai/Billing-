@@ -164,7 +164,7 @@ class App extends Component {
                  <ResultComponent result={this.state.result}/>
                  <KeyPadComponent onClick={this.onClick}/>
 
-                 <button className = "btn-style"onClick = {this.handleHide}>close</button>                
+                 <button id="center-align" onClick = {this.handleHide}>close</button>                
                  </div>
                
             </Modal>
@@ -173,8 +173,9 @@ class App extends Component {
         return (
             <div>
                     
-                    <p>Hey guys this is a simple billing system where you can enter the items and amount and the total gets printed.You can even use calculator if you want assistance</p>
-
+                     <div className="header">
+                         <div className="title">Billing App</div>
+                    </div>
                     <Input addNinja = {this.addNinja} handleShow={this.handleShow}/>
                     <List list = {this.state.list} deleteItem= {this.deleteItem} />
                     <AmountCalculation list = {this.state.list}/>

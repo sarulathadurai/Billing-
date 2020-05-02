@@ -1,5 +1,5 @@
 import React from 'react';
-import "/home/saru/hooks/src/Input.css";
+import "/home/saru/calculator/src/Input.css";
 
 
 

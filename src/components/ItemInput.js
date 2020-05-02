@@ -32,7 +32,7 @@ class ItemInput extends React.Component {
         return(
             <div className="input_container">
                 <div className="con_gallery">
-                    <input className="input_grid1" required
+                    <input className="input_grid1 calciInput" required
                     type = "text" 
                     placeholder = "Enter items" 
                     name = "item" 

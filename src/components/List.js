@@ -15,7 +15,9 @@ const List = ({list,deleteItem}) =>{
             <tr>
                <td>{elemI.item}</td>
                <td>{elemI.amount}</td>
-               <td onClick = {() => {deleteItem(elemI.id)}}>Delete</td>
+               <td onClick = {() => {deleteItem(elemI.id)}}>
+               <img src="https://img.icons8.com/material/30/000000/trash--v1.png"/>
+               </td>
            </tr>
 
             </tbody>
