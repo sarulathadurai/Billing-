@@ -1,12 +1,4 @@
-input{
-   
-    width:60%;
-    border:1px solid rgb(16, 93, 236);
-    height : 30px;
-    margin :10px 20%;
-    padding :5px;
-    border-radius:7px;
-}
+
 
 .form{
 
@@ -26,19 +18,6 @@ input{
     text-align:justify;
     padding: 5px;
     font-family:"Roboto"
-}
-
-.btn-style{
-    
-    width: 100px;
-    align-self: center;
-    margin : 20px 45%;
-    padding:10px;
-    position: relative ;
-    background-color: rgb(27, 10, 100);
-    border: rgb(27, 10, 100);
-    color: white;
-
 }
 
 .item{

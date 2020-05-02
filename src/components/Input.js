@@ -33,6 +33,10 @@ handleChange = (event) => {
   
  }
 
+ showHandle = (e) => {
+
+  this.props.handleShow(e)
+ }
     
     
   render(){
@@ -40,17 +44,27 @@ handleChange = (event) => {
      
     return(
       <div className = "display">
+
         <form onSubmit = {this.handleSubmit}>
 
           <div className="form">
 
-          <input type = "text" placeholder = "Enter items" name = "item" value = {this.state.item}  onChange = {this.handleChange}/> <br />
+            <input className="inputField" type = "text" placeholder = "Enter items" required name = "item" value = {this.state.item}  onChange = {this.handleChange}/> <br />
 
-          <input type = "text" placeholder = "Enter amount" name = "amount" value = {this.state.amount}  onChange = {this.handleChange}/> <br />
-
+            <input className="inputField" type = "text" placeholder = "Enter amount" required name = "amount" value = {this.state.amount}  onChange = {this.handleChange}/> <br />
           
-          <button className="btn-style">Add</button> 
+            <div className="con_cotainer">
 
+              <div className="con_gallery">
+
+                <div className="gallery-item1"><button  className="btn-align">Add</button></div>
+             
+                <div className="gallery-item2"> <img onClick = {e =>{this.showHandle(e)}} src="https://img.icons8.com/pastel-glyph/50/000000/calculator.png"/></div>
+
+              </div>
+
+            </div>
+     
           </div>
          
         </form>

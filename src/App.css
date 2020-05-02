@@ -28,18 +28,72 @@ button {
   border: 1px solid rgb(27, 10, 100);
 }
 
-.img-align{
-  flex-direction: column;
-  align-self: center;
-  margin : 20px 45%;
-  position: relative ;
+.btn-align{
+  width: 70px;
+  height: 40px;
+  text-align: center;
+  border:1px solid rgb(27, 10, 100);
+  background-color:  rgb(27, 10, 100);
+  color: #fff;
+  cursor: pointer;
+  font-weight: bold;
+  position: relative;
+}
+
+.con_container {
+  width: 40%;
+  margin: 2rem auto; 
+}
+
+.con_gallery{
+
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  grid-template-rows: repeat(1,5fr) ;
+  grid-gap:1.2rem;
 
 }
 
-@media only screen and (max-width:500px){
+.gallery-item1{
 
-  .img-align{
+  grid-column-start:2;
+  grid-column-end:3;
+  grid-row-start:1 ;
+  grid-row-end:2;
+  align-self: center;
+  justify-content: center;
 
-    margin:5px 35%;
-  }
+}
+
+.gallery-item2{
+
+  grid-column-start:3 ;
+  grid-column-end:4;
+  grid-row-start:1 ;
+  grid-row-end:2;
+  align-self: center;
+  justify-content: center;
+}
+
+.input_container {
+  width: 100%;
+  margin: 2rem auto; 
+}
+
+.input_grid1{
+ 
+  grid-column-start:1;
+  grid-column-end:4;
+  grid-row-start:1 ;
+  grid-row-end:2;
+}
+
+.input_grid2{
+ 
+  grid-column-start:4;
+  grid-column-end:5;
+  grid-row-start:1 ;
+  grid-row-end:2;
+  align-self: center;
+  justify-content: center;
 }

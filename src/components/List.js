@@ -1,24 +1,31 @@
 import React from 'react';
-import ListItem from "./ListItem"
 
-const List = (props) =>{
+const List = ({list,deleteItem}) =>{
 
     return(
         
         <div>
 
-           {props.list.map((elemI,index) => (
-                <ListItem 
-                    key = {index}
-                    amount = {elemI.Amount}
-                    item  = {elemI.Item}
-                />
+           {list.map((elemI) => (
+                
+        <div className="item" key={elemI.id}>
+  
+        <table>
+            <tbody>
+            <tr>
+               <td>{elemI.item}</td>
+               <td>{elemI.amount}</td>
+               <td onClick = {() => {deleteItem(elemI.id)}}>Delete</td>
+           </tr>
 
+            </tbody>
+         
+        </table>
 
-
-             )
+        </div>
+                 )
              
-             )}
+           )}
 
         </div>
          

@@ -6,6 +6,7 @@ import Input from "./components/Input";
 import Modal from "./components/Modal";
 import List from './components/List'
 import AmountCalculation from './components/AmountCalculation';
+import ItemInput from './components/ItemInput';
 
 class App extends Component {
     constructor(){
@@ -13,7 +14,6 @@ class App extends Component {
 
         this.state = {
             items: "",
-            total:"",
             result: "",
             showModal : false
         }
@@ -37,9 +37,21 @@ class App extends Component {
         }
 
         else {
-            this.setState({
-                result: this.state.result + button
-            })
+            if(this.state.result === undefined){
+
+                this.setState({
+                    result: button
+                })
+                   
+            }
+
+            else {
+
+                this.setState({
+                    result:this.state.result+button
+                })
+            }
+           
         }
     };
 
@@ -67,17 +79,7 @@ class App extends Component {
             });
 
         }
-
-        let result = (eval(checkResult) || "" ) + ""
-
-        this.setState ({
-            
-            total:result
-        
-        })
-
-        
-    };
+   };
 
     reset = () => {
         this.setState({
@@ -112,17 +114,12 @@ class App extends Component {
 
         })
 
-        if(this.state.total !== 0){
-
-
         let listItem = { item,amount:this.state.result}
-        console.log(listItem);
 
-        this.addItemfromCalci(listItem);
-
-        }
+        this.addItemfromCalci(listItem);      
 
     }
+
     
     addItemfromCalci = (listItem) => {
 
@@ -133,6 +130,7 @@ class App extends Component {
         })
           console.log(this.state.list)
     }
+
 
     addNinja = (ninja) => {
        
@@ -162,8 +160,8 @@ class App extends Component {
         const modal = this.state.showModal ? (
             <Modal>
                  <div className="calculator-body">
-
-                 <ResultComponent handleChange = {this.handleChange} item={this.state.item} result={this.state.result}/>
+                 <ItemInput handleChange = {this.handleChange} item={this.state.item} />
+                 <ResultComponent result={this.state.result}/>
                  <KeyPadComponent onClick={this.onClick}/>
 
                  <button className = "btn-style"onClick = {this.handleHide}>close</button>                
@@ -177,8 +175,7 @@ class App extends Component {
                     
                     <p>Hey guys this is a simple billing system where you can enter the items and amount and the total gets printed.You can even use calculator if you want assistance</p>
 
-                    <Input addNinja = {this.addNinja}/>
-                    <img className="img-align" onClick = {this.handleShow} src="https://img.icons8.com/dusk/64/000000/calculator.png"/>
+                    <Input addNinja = {this.addNinja} handleShow={this.handleShow}/>
                     <List list = {this.state.list} deleteItem= {this.deleteItem} />
                     <AmountCalculation list = {this.state.list}/>
                     {modal}
