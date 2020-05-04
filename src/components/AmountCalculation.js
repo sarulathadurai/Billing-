@@ -7,7 +7,7 @@ const AmountCalculation = (props) => {
 
    props.list.forEach(element => {
         
-       sum = sum + parseInt(element.amount);
+       sum = sum + parseFloat(element.amount);
     });
     return (
          

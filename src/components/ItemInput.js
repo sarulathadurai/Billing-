@@ -17,7 +17,7 @@ class ItemInput extends React.Component {
    
   handleSubmit = (e) => {
         e.preventDefault();
-        if(this.state.item){
+        if(this.state.item && this.props.result){
 
         this.props.handleChange(this.state.item);
         this.setState({

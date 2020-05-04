@@ -160,7 +160,7 @@ class App extends Component {
         const modal = this.state.showModal ? (
             <Modal>
                  <div className="calculator-body">
-                 <ItemInput handleChange = {this.handleChange} item={this.state.item} />
+                 <ItemInput handleChange = {this.handleChange} item={this.state.item} result={this.state.result} />
                  <ResultComponent result={this.state.result}/>
                  <KeyPadComponent onClick={this.onClick}/>
 

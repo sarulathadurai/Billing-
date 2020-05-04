@@ -51,7 +51,7 @@ handleChange = (event) => {
 
             <input className="inputField" type = "text" placeholder = "Enter items" required name = "item" value = {this.state.item}  onChange = {this.handleChange}/> <br />
 
-            <input className="inputField" type = "text" placeholder = "Enter amount" required name = "amount" value = {this.state.amount}  onChange = {this.handleChange}/> <br />
+            <input className="inputField" type = "number" placeholder = "Enter amount" required name = "amount" value = {this.state.amount}  onChange = {this.handleChange}/> <br />
           
             <div className="con_cotainer">
 
